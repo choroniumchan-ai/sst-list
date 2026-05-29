@@ -16,6 +16,12 @@
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
   </mat-form-field>
 
+  <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]"
+                [pageSize]="5"
+                 showFirstLastButtons 
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+
   <table mat-table [dataSource]="dataSource">
 
     <!-- Position Column -->
@@ -79,11 +85,7 @@
     </tr>
   </table>
 
-  <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]"
-                [pageSize]="5"
-                 showFirstLastButtons 
-                 aria-label="Select page of periodic elements">
-  </mat-paginator>
+
 
   </div>
 </main>

@@ -4,9 +4,10 @@
 
 # 覚書
 [スプレッドシート](https://docs.google.com/spreadsheets/d/1RcWg6WB-qj5xZHZLYpdHGB0R1idd7M7VreT_sO-u3xk/edit?usp=sharing) をデータベースとして、情報を一覧表示して検索できるようにする。
-画面は angular、見た目は angular material
-ページのホストは github pages
-gh-pages ブランチにhtmlなどあり
+
+画面は angular、見た目は angular material。
+ページのホストは github pages。
+gh-pages ブランチにhtmlなどあり。
 
 画面の更新を行う場合は、
 ng deploy --base-href=/sst-list/
@@ -15,12 +16,15 @@ ng deploy --base-href=/sst-list/
 データの取得は誰でも出来てしまう
 →スプレッドーシートで作った簡易DBなので致し方なし
 
+
 データ数が多くなると動作が重くなる懸念
 →一応、テーブルのページングをつけているが、そのうち遅くなるかも。
-　遅くなったら考える。
+　遅くなったら考える。 
 　ただ、遅くなるのは初期表示のタイミングのみだし、たぶんそんなにひどいことにはならない気がする。
 
+
 以下は angular の自動生成README
+
 
 # TestApp
 

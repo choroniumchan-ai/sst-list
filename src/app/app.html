@@ -1,0 +1,100 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
+<!-- * * * * * * * to get started with your project! * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+
+<main class="main">
+  <div class="container">
+
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    </ng-container>
+
+    <!-- 日付 -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> 日付 </th>
+      <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+    </ng-container>
+
+    <!-- 動画リンク -->
+    <ng-container matColumnDef="movielink">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let element">
+        @if (element.movielink) {
+          <a [href]="element.movielink" target="_blank" title="動画を見る" (click)="$event.stopPropagation()">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="play_circle"></mat-icon>
+          </a>
+        }
+      </td>
+    </ng-container>
+
+    <!-- 議員名 -->
+    <ng-container matColumnDef="member">
+      <th mat-header-cell *matHeaderCellDef> 議員名 </th>
+      <td mat-cell *matCellDef="let element">{{element.member}}</td>
+    </ng-container>
+
+    <!-- テーマ -->
+    <ng-container matColumnDef="theme">
+      <th mat-header-cell *matHeaderCellDef> テーマ </th>
+      <td mat-cell *matCellDef="let element">{{element.theme}}</td>
+    </ng-container>
+
+    <!-- 議事録リンク -->
+    <ng-container matColumnDef="minutes">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let element">
+        @if (element.minutes) {
+          <a [href]="element.minutes" target="_blank" title="議事録を見る" (click)="$event.stopPropagation()">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="article"></mat-icon>
+          </a>
+        }
+      </td>
+    </ng-container>
+
+    <!-- 会議名 -->
+    <ng-container matColumnDef="meeting">
+      <th mat-header-cell *matHeaderCellDef> 会議名 </th>
+      <td mat-cell *matCellDef="let element">{{element.meeting}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" 
+      (click)="openDetail(row)" 
+      class="clickable-row">
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]"
+                [pageSize]="10"
+                 showFirstLastButtons 
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+
+  </div>
+</main>
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+
+<router-outlet />

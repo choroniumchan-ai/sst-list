@@ -1,3 +1,8 @@
+# 参政党の国会中継検索システム
+[リンク](https://choroniumchan-ai.github.io/sst-list/)
+
+以下は angular の自動生成README
+
 # TestApp
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.6.

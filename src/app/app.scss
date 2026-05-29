@@ -26,3 +26,26 @@
 .clickable-row:hover {
   background-color: #f5f5f5;
 }
+
+/* No列 */
+.mat-column-position {
+  width: 60px;
+  text-align: center;
+}
+
+/* 日付 */
+.mat-column-date {
+  width: 80px;
+}
+
+/* 動画アイコン */
+.mat-column-movielink {
+  width:50px;
+  text-align: center;
+}
+
+/* 議事録アイコン */
+.mat-column-minutes {
+  width: 50px;
+  text-align: center;
+}

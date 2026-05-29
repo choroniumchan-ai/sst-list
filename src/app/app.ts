@@ -88,7 +88,7 @@ export class App implements AfterViewInit {
   }
 
   private http = inject(HttpClient);
-  private url = 'https://script.google.com/macros/s/AKfycbxYcU4RUl8z2_-WJ8BY7rErBIqJ0Jou38N7unlb4uqcWNDflclU1rkPbtP3IF-_5snkSw/exec';
+  private url = 'https://script.google.com/macros/s/AKfycbzQY9XVEfAtN7-5B-DfccQ6ue2ig72fMqmAFIA9J2ODOAOABLdjoqfQwZcOYCNTxcQyag/exec';
 
   getSpreadsheetData() {
     return this.http.get<any[]>(this.url);

@@ -58,7 +58,7 @@ export class App implements AfterViewInit {
       const time1 = performance.now();
       console.log(`処理時間　取得: ${(time1 - start).toFixed(2)} ms`);
       // ここでログ出力
-      console.log('取得したデータ:', data);
+      console.log('取得したデータ数:', data.length);
 
       // jsonの配列から順番にインターフェースの型に変換して代入
       var dataList = data

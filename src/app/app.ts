@@ -1,4 +1,4 @@
-import { Component, signal, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, signal, AfterViewInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
@@ -38,7 +38,8 @@ for (let x = 0; x < 250; x++) {
   selector: 'app-root',
   imports: [RouterOutlet, MatTableModule, MatPaginatorModule, ScrollingModule, MatFormFieldModule, MatInputModule, MatIconModule],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush // 高速化するらしいのでつけたが、関係ないかも
 })
 export class App implements AfterViewInit {
   protected readonly title = signal('test-app');
@@ -51,7 +52,11 @@ export class App implements AfterViewInit {
   constructor(public dialog: MatDialog) {}
 
   ngOnInit() {
+    const start = performance.now();
+    console.log("ngOnInit");
     this.getSpreadsheetData().subscribe(data => {
+      const time1 = performance.now();
+      console.log(`処理時間　取得: ${(time1 - start).toFixed(2)} ms`);
       // ここでログ出力
       console.log('取得したデータ:', data);
 
@@ -74,8 +79,15 @@ export class App implements AfterViewInit {
         } as PeriodicElement;
       });
 
-      this.dataSource.data = dataList;
+      const time2 = performance.now();
+      console.log(`処理時間 変換: ${(time2 - time1).toFixed(2)} ms`);
+
+      // 注意：paginator を設定してから data を設定すること。順序が逆になると数秒遅くなる場合あり。
       this.dataSource.paginator = this.paginator;
+      this.dataSource.data = dataList;
+
+      const end = performance.now();
+      console.log(`処理時間 描画: ${(end - time2).toFixed(2)} ms`);
     });
   }
 
@@ -88,7 +100,7 @@ export class App implements AfterViewInit {
   }
 
   private http = inject(HttpClient);
-  private url = 'https://script.google.com/macros/s/AKfycbzQY9XVEfAtN7-5B-DfccQ6ue2ig72fMqmAFIA9J2ODOAOABLdjoqfQwZcOYCNTxcQyag/exec';
+  private url = 'https://script.google.com/macros/s/AKfycbw1Wu-6Kam2t9JIxn1pDRI6jAmzOQc_NJSin1rQZl-aMDwWtsb-KuMIJTYfXzlRx4CCnA/exec';
 
   getSpreadsheetData() {
     return this.http.get<any[]>(this.url);
